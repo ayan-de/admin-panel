@@ -65,10 +65,10 @@ app.use((req, res, next)=>{
          // console.log(y)
       })
   // PASS ALL COURSERS LIST TO ALL COURESE PAGES
-      // productModel.find({})
-      // .then((x)=>{
-      //     res.locals.allcourses = x;   
-      // })
+      productModel.find({})
+      .then((x)=>{
+          res.locals.allcourses = x;   
+      })
       
   //PASS ALL CATEGORY DATA ANY WHERE
   catModel.find()
@@ -83,11 +83,13 @@ app.use((req, res, next)=>{
 const admin = require('./route/backend/admin')
 const page = require('./route/backend/page')
 let admincategory = require('./route/backend/admin-category')
+let adminproducts = require('./route/backend/admin-products')
 
 //route rendering
 app.use('/admin',admin)
 app.use('/admin/page',page)
 app.use('/admin/category/', admincategory)
+app.use('/admin/products/', adminproducts)
 
 
 

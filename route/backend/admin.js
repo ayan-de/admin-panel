@@ -2,6 +2,8 @@ const express = require('express')
 var router = express()
 const pageModel = require('../../model/pageModel')
 let catModel = require('../../model/categorymodel')
+let productModel = require('../../model/productModel')
+
 
 
 router.use((req, res, next)=>{
@@ -12,24 +14,23 @@ router.use((req, res, next)=>{
     })
 
 
-    // pageModel.find({}).count()
-    // .then((x)=>{
-    //     res.locals.noOfPage =x
-    // })
+    pageModel.find({}).count()
+    .then((x)=>{
+        res.locals.noOfPage =x
+    })
 
 
     next()
 })
 
-router.get('/',(req,res) =>{
-    pageModel.find({}).count()
-    .then((x) =>{
-        res.render('../views/backend/admin-file',{x})
-    })
-    .catch((y) =>{
-        console.log(y);
+router.get('/', (req, res)=>{
+    productModel.find({}).count()
+    .then((noofcourse)=>{
+        res.render('../views/backend/admin-File.ejs',{noofcourse})
     })
 })
+
+
 
 
 module.exports = router
